@@ -35,10 +35,10 @@ func (*kubeadmv1beta1) Config(ctx *util.Context, instance kubeoneapi.HostConfig)
 	return templates.KubernetesToYAML(config)
 }
 
-func (*kubeadmv1beta1) UpgradeLeaderCMD() string {
+func (*kubeadmv1beta1) UpgradeLeaderCommand() string {
 	return "kubeadm upgrade apply"
 }
 
-func (*kubeadmv1beta1) UpgradeFollowerCMD() string {
+func (*kubeadmv1beta1) UpgradeFollowerCommand() string {
 	return "kubeadm upgrade node experimental-control-plane"
 }
