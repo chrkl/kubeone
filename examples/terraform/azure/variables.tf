@@ -62,11 +62,16 @@ variable "location" {
 
 variable "control_plane_vm_size" {
   description = "VM Size for control plane machines"
-  default     = "Standard_B2s"
+  default     = "Standard_D2s_v3"
+}
+
+variable "control_plane_disk_type" {
+  description = "Controle plane VM disk type"
+  default     = "Premium_LRS"
 }
 
 variable "worker_vm_size" {
   description = "VM Size for worker machines"
-  default     = "Standard_B2s"
+  default     = "Standard_D2s_v3"
 }
 

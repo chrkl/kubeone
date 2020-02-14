@@ -31,8 +31,8 @@ resource "azurerm_availability_set" "avset" {
   name                         = "${var.cluster_name}-avset"
   location                     = var.location
   resource_group_name          = azurerm_resource_group.rg.name
-  platform_fault_domain_count  = 2
-  platform_update_domain_count = 2
+  platform_fault_domain_count  = 3
+  platform_update_domain_count = 20
   managed                      = true
 
   tags = {
@@ -111,7 +111,7 @@ resource "azurerm_public_ip" "control_plane" {
 
 resource "azurerm_lb" "lb" {
   resource_group_name = azurerm_resource_group.rg.name
-  name                = "kubernetes"
+  name                = var.cluster_name
   location            = var.location
 
   frontend_ip_configuration {
@@ -202,7 +202,7 @@ resource "azurerm_virtual_machine" "control_plane" {
     name              = "${var.cluster_name}-cp-${count.index}"
     caching           = "ReadWrite"
     create_option     = "FromImage"
-    managed_disk_type = "Standard_LRS"
+    managed_disk_type = var.control_plane_disk_type
   }
 
   os_profile {
